@@ -28,32 +28,31 @@ Jumps to the path corresponding to the given name.
 
 ### List
 
-    sote -l
-    sote --list
+    sote list
     
 Lists the paths stored by **sote**.
 
 ### Add
 
-    sote -a name path
+    sote add name path
     
 Add the path to the store with the given name.
 
 ### Show
 
-    sote -s name
+    sote show name
     
 Shows the path corresponding to the given name.
 
 ### Remove
 
-    sote -r name
+    sote remove name
     
 Remove the path stored by **sote** at the given name.
 
 ### Clear 
 
-    sote -c
+    sote clear
     
 Clear all the paths stored by **sote**. Ask for confirmation before acting.
 
