@@ -6,15 +6,56 @@
 
 * * *
 
+**sote** is like a perpetual `pushd` : he stores your favorites system paths, so you can jump to it by typing `sote name`.
+
 ## Getting Started
 
 **sote** is a command-line tool, so it is preferable to install it globally.
 
     (sudo) npm install -g sote
+    
+**note:** for now, **sote** has only been tested with *Mac OS X*.
 
 ## Usage
 
-_(Coming Soon)_
+    sote [options] [name]
+    
+### Basic usage
+
+    sote name
+    
+Jumps to the path corresponding to the given name.
+
+### List
+
+    sote -l
+    sote --list
+    
+Lists the paths stored by **sote**.
+
+### Add
+
+    sote -a name path
+    
+Add the path to the store with the given name.
+
+### Show
+
+    sote -s name
+    
+Shows the path corresponding to the given name.
+
+### Remove
+
+    sote -r name
+    
+Remove the path stored by **sote** at the given name.
+
+### Clear 
+
+    sote -c
+    
+Clear all the paths stored by **sote**. Ask for confirmation before acting.
 
 ## Contributing
 
@@ -23,6 +64,13 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 
 * **0.0.1**: Starting project (*19/06/14*)
+
+### TODO
+
+* [ ] Check/Fix compatibility with
+    * [ ] Linux
+    * [ ] Windows
+* [ ] Add unit tests
 
 ## License
 
