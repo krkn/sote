@@ -6,7 +6,7 @@
 
 * * *
 
-**Note:** sote is not ready yet. It will be soon. :)
+**Note:** sote is not ready yet. I should probably rewrite it in bash. Wait & see... :)
 
 * * *
 
