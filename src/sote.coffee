@@ -78,13 +78,18 @@ program
     .description "Clear all the paths stored by sote. Ask for confirmation before acting."
     .action ->
         console.log "clear"
+        # TODO
 
 # jump (default) command
 program
     .command "*"
     .description "Jumps to the path corresponding to the given name."
     .action ( sName ) ->
-        console.log "jump: #{ sName }"
+        unless store.exists sName
+            console.log "There's no path stored at the name \"#{ sName }\"."
+            process.exit 0
+        # TODO : change current dir
+        process.exit 0
 
 program.parse process.argv
 
