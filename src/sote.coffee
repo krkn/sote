@@ -42,7 +42,11 @@ program
     .command "show <name>"
     .description "Shows the path corresponding to the given name."
     .action ( sName ) ->
-        console.log "show: #{ sName }"
+        unless store.exists sName
+            console.log "There's no path stored at the name \"#{ sName }\"."
+            process.exit 0
+        console.log sName, "\t", chalk.cyan store.get sName
+        process.exit 0
 
 # add command
 program
