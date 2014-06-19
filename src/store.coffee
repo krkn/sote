@@ -28,7 +28,7 @@ exports.all = all = ->
 
 exports.load = load = ->
     return oStore = oEmptyStore unless fs.existsSync sStorePath
-    oStore = fs.readFileSync sStorePath, oFSOptions
+    oStore = JSON.parse fs.readFileSync sStorePath, oFSOptions
 
 exports.get = get = ( sKey ) ->
     load() unless oStore
@@ -39,4 +39,4 @@ exports.set = set = ( sKey, sValue ) ->
     oStore.content[ sKey ] = sValue
 
 exports.save = save = ->
-    fs.writeFileSync sStorePath, oStore, oFSOptions
+    fs.writeFileSync sStorePath, JSON.stringify( oStore ), oFSOptions

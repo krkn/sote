@@ -36,7 +36,7 @@ Lists the paths stored by **sote**.
 
     sote add name path
     
-Add the path to the store with the given name.
+Add the path to the store with the given name. If no path is given, use current path.
 
 ### Show
 

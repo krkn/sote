@@ -32,15 +32,10 @@ program
         unless aProperties.length
             console.log "There's no path in the store (yet)"
             process.exit 0
+        aProperties.unshift [ "----", "----" ]
+        aProperties.unshift [ "name", "path" ]
         console.log table aProperties
         process.exit 0
-
-# add command
-program
-    .command "add <name> <path>"
-    .description "Add the path to the store with the given name."
-    .action ( sName, sPath ) ->
-        console.log "add: #{ sName }, #{ sPath }"
 
 # show command
 program
@@ -48,6 +43,17 @@ program
     .description "Shows the path corresponding to the given name."
     .action ( sName ) ->
         console.log "show: #{ sName }"
+
+# add command
+program
+    .command "add <name> [path]"
+    .description "Add the path to the store with the given name. If no path is given, use current path."
+    .action ( sName, sPath = no ) ->
+        sPath = process.cwd() unless sPath
+        store.set sName, sPath
+        store.save()
+        console.log chalk.cyan( sPath ), "stored at name \"#{ sName }\""
+        process.exit 0
 
 # remove command
 program
