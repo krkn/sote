@@ -11,9 +11,9 @@
 "use strict"
 
 program = require "commander"
-fs = require "fs"
-path = require "path"
+store = require "./store.js"
 chalk = require "chalk"
+table = require "text-table"
 error = chalk.bold.red
 success = chalk.bold.green
 
@@ -28,7 +28,12 @@ program
     .command "list"
     .description "Lists the paths stored by sote."
     .action ->
-        console.log "list"
+        aProperties = ( [ sProperty, sValue ] for sProperty, sValue of store.all() )
+        unless aProperties.length
+            console.log "There's no path in the store (yet)"
+            process.exit 0
+        console.log table aProperties
+        process.exit 0
 
 # add command
 program
