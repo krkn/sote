@@ -6,6 +6,10 @@
 
 * * *
 
+**Note:** sote is not ready yet. It will be soon. :)
+
+* * *
+
 **sote** is like a perpetual `pushd` : he stores your favorites system paths, so you can jump to it by typing `sote name`.
 
 ## Getting Started
