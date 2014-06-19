@@ -30,6 +30,10 @@ exports.load = load = ->
     return oStore = oEmptyStore unless fs.existsSync sStorePath
     oStore = JSON.parse fs.readFileSync sStorePath, oFSOptions
 
+exports.exists = exists = ( sKey ) ->
+    load() unless oStore
+    !!oStore.content[ sKey ]
+
 exports.get = get = ( sKey ) ->
     load() unless oStore
     oStore.content[ sKey ]
@@ -37,6 +41,10 @@ exports.get = get = ( sKey ) ->
 exports.set = set = ( sKey, sValue ) ->
     load() unless oStore
     oStore.content[ sKey ] = sValue
+
+exports.remove = remove = ( sKey ) ->
+    load() unless oStore
+    delete oStore.content[ sKey ]
 
 exports.save = save = ->
     fs.writeFileSync sStorePath, JSON.stringify( oStore ), oFSOptions

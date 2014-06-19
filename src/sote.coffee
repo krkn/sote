@@ -60,7 +60,13 @@ program
     .command "remove <name>"
     .description "Remove the path stored by sote at the given name."
     .action ( sName ) ->
-        console.log "remove: #{ sName }"
+        unless store.exists sName
+            console.log "There's no path stored at the name \"#{ sName }\"."
+            process.exit 0
+        store.remove sName
+        store.save()
+        console.log "Remove the path stored at the name \"#{ sName }\"."
+        process.exit 0
 
 # clear command
 program
