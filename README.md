@@ -69,6 +69,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 * [ ] Check/Fix compatibility with
     * [ ] Linux
     * [ ] Windows
+* [ ] Add bash completion
 * [ ] Add unit tests
 
 ## License
