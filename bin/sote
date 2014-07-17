@@ -91,13 +91,30 @@ sote() {
             echo -e "$usage${NONE}"
             return;
             ;;
-        "--completion")
+        "--completion-keys")
             for i in $(git config --file $store --list) ; do
                 i=${i//store./}
                 i=${i//=*/}
 
-                echo -e "$i"
+                echo "$i"
             done
+            return;
+            ;;
+        "--completion-options")
+            echo "-v"
+            echo "--version"
+            echo "-h"
+            echo "--help"
+            echo "-l"
+            echo "--list"
+            echo "-s"
+            echo "--show"
+            echo "-a"
+            echo "--add"
+            echo "-r"
+            echo "--remove"
+            echo "-c"
+            echo "--clear"
             return;
             ;;
         "-l"|"--list")
@@ -155,8 +172,37 @@ sote() {
 
 _sote_complete() {
     local word="${COMP_WORDS[COMP_CWORD]}"
+    compopt +o nospace
 
-    COMPREPLY=( $(compgen -W "$(sote --completion)" -- "$word") )
+    if [ "$COMP_CWORD" -eq 1 ]
+    then
+        if [ "${word:0:1}" == "-" ]
+        then
+            COMPREPLY=( $(compgen -W "$(sote --completion-options)" -- "$word") )
+        else
+            COMPREPLY=( $(compgen -W "$(sote --completion-keys)" -- "$word") )
+        fi
+    else
+        local action="${COMP_WORDS[1]}"
+        if [ "$COMP_CWORD" -eq 2 ]
+        then
+            case "$action" in
+                "-s"|"--show"|"-r"|"--remove"|"-a"|"--add")
+                    COMPREPLY=( $(compgen -W "$(sote --completion-keys)" -- "$word") )
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+        else
+            case "$action" in
+                *)
+                    compopt -o nospace
+                    COMPREPLY=( $(compgen -d "$word") )
+                    ;;
+            esac
+        fi
+    fi
 }
 
 complete -F _sote_complete sote
