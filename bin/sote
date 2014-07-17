@@ -45,14 +45,12 @@ sote() {
     local usage="
     ${EMY}Usage: ${W}sote ${G}[options] ${C}<name>
 
-    ${EMC}Name:
-
-        ${C}*                      ${W}Jumps to the path corresponding to the given name.
+        ${W}Jumps to the path corresponding to the given name.
 
     ${EMG}Options:
 
-        ${G}-h, --help      ${W}output usage information
-        ${G}-v, --version      ${W}output the version number
+        ${G}-h, --help                   ${W}Output usage information
+        ${G}-v, --version                ${W}Output the version number
         ${G}-l, --list                   ${W}Lists the paths stored by sote.
         ${G}-s, --show ${B}<name>            ${W}Shows the path corresponding to the given name.
         ${G}-a, --add ${B}<name> ${Y}[path]      ${W}Add the path to the store with the given name. If no path is given, use current path.
@@ -60,10 +58,9 @@ sote() {
         ${G}-c, --clear                  ${W}Clear all the paths stored by sote. Ask for confirmation before acting.
     "
 
-
     # Check for git
 
-    command -v git >/dev/null 2>&1 || { echo "sote requires git but it's not installed. Aborting." >&2; return 1; }
+    command -v git >/dev/null 2>&1 || { echo "${EMR}error: ${NONE}sote requires ${Y}git ${NONE}but it's not installed. Aborting." >&2; return 1; }
 
     # Check for store file
 
