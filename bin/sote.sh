@@ -102,6 +102,15 @@ sote() {
             echo -e "$usage${NONE}"
             return;
             ;;
+        "--completion")
+            for i in $(git config --file $store --list) ; do
+                i=${i//store./}
+                i=${i//=*/}
+
+                echo -e "$i"
+            done
+            return;
+            ;;
         "list")
             for i in $(git config --file $store --list) ; do
                 i=${i//store./$C}
@@ -152,3 +161,11 @@ sote() {
             ;;
     esac
 }
+
+_sote_complete() {
+    local word="${COMP_WORDS[COMP_CWORD]}"
+
+    COMPREPLY=( $(compgen -W "$(sote --completion)" -- "$word") )
+}
+
+complete -F _sote_complete sote
