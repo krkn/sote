@@ -43,21 +43,21 @@ sote() {
     # usage text
 
     local usage="
-    ${EMY}Usage: ${W}sote ${G}[options] ${C}[command]
+    ${EMY}Usage: ${W}sote ${G}[options] ${C}<name>
 
-    ${EMC}Commands:
+    ${EMC}Name:
 
-        ${C}list                   ${W}Lists the paths stored by sote.
-        ${C}show ${B}<name>            ${W}Shows the path corresponding to the given name.
-        ${C}add ${B}<name> ${G}[path]      ${W}Add the path to the store with the given name. If no path is given, use current path.
-        ${C}remove ${B}<name>          ${W}Remove the path stored by sote at the given name.
-        ${C}clear                  ${W}Clear all the paths stored by sote. Ask for confirmation before acting.
         ${C}*                      ${W}Jumps to the path corresponding to the given name.
 
     ${EMG}Options:
 
-        ${G}-h      ${W}output usage information
-        ${G}-V      ${W}output the version number
+        ${G}-h, --help      ${W}output usage information
+        ${G}-v, --version      ${W}output the version number
+        ${G}-l, --list                   ${W}Lists the paths stored by sote.
+        ${G}-s, --show ${B}<name>            ${W}Shows the path corresponding to the given name.
+        ${G}-a, --add ${B}<name> ${Y}[path]      ${W}Add the path to the store with the given name. If no path is given, use current path.
+        ${G}-r, --remove ${B}<name>          ${W}Remove the path stored by sote at the given name.
+        ${G}-c, --clear                  ${W}Clear all the paths stored by sote. Ask for confirmation before acting.
     "
 
 
@@ -86,19 +86,11 @@ sote() {
     path=$3
 
     case "$action" in
-        "-v")
+        "-v"|"--version")
             echo -e "${Y}sote ${W}v$version${NONE}"
             return;
             ;;
-        "--version")
-            echo -e "${Y}sote ${W}v$version${NONE}"
-            return;
-            ;;
-        "-h")
-            echo -e "$usage${NONE}"
-            return;
-            ;;
-        "--help")
+        "-h"|"--help")
             echo -e "$usage${NONE}"
             return;
             ;;
@@ -111,7 +103,7 @@ sote() {
             done
             return;
             ;;
-        "list")
+        "-l"|"--list")
             for i in $(git config --file $store --list) ; do
                 i=${i//store./$C}
                 i=${i//=/ ${Y}› ${NONE}}
@@ -120,7 +112,7 @@ sote() {
             done
             return;
             ;;
-        "show")
+        "-s"|"--show")
             path=$( git config --file $store --get "store.$name" )
             if [ "$path" != "" ]
             then
@@ -130,21 +122,23 @@ sote() {
             fi
             return;
             ;;
-        "add")
+        "-a"|"--add")
             if [ ! $path ]
             then
                 path=$PWD
+            else
+                path=$(cd $path; pwd)
             fi
             git config --file $store --replace-all "store.$name" $path
             echo -e "${EMY}added: ${C}$name ${Y}› ${NONE}$path${NONE}"
             return;
             ;;
-        "remove")
+        "-r"|"--remove")
             git config --file $store --unset-all "store.$name"
             echo -e "${EMY}removed: ${C}$name${NONE}"
             return;
             ;;
-        "clear")
+        "-c"|"--clear")
             echo "" > $store
             echo -e "${EMY}cleared${NONE}"
             return;
