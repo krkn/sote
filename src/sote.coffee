@@ -31,7 +31,7 @@ program
         aProperties = ( [ sProperty, sValue ] for sProperty, sValue of store.all() )
         unless aProperties.length
             console.log "There's no path in the store (yet)"
-            process.exit 0
+            process.exit 1
         aProperties.unshift [ "----", "----" ]
         aProperties.unshift [ "name", "path" ]
         console.log table aProperties
@@ -44,7 +44,7 @@ program
     .action ( sName ) ->
         unless store.exists sName
             console.log "There's no path stored at the name \"#{ sName }\"."
-            process.exit 0
+            process.exit 1
         console.log sName, "\t", chalk.cyan store.get sName
         process.exit 0
 
@@ -66,7 +66,7 @@ program
     .action ( sName ) ->
         unless store.exists sName
             console.log "There's no path stored at the name \"#{ sName }\"."
-            process.exit 0
+            process.exit 1
         store.remove sName
         store.save()
         console.log "Remove the path stored at the name \"#{ sName }\"."
@@ -87,8 +87,8 @@ program
     .action ( sName ) ->
         unless store.exists sName
             console.log "There's no path stored at the name \"#{ sName }\"."
-            process.exit 0
-        # TODO : change current dir
+            process.exit 1
+        process.stdout.write store.get sName
         process.exit 0
 
 program.parse process.argv
