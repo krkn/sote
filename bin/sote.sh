@@ -14,6 +14,10 @@ sote() {
     local version=0.0.1
     local store="$HOME/.sote"
 
+    # reset colors
+
+    local NONE="\033[0m"
+
     # regular colors
 
     local K="\033[0;30m"    # black
@@ -39,7 +43,7 @@ sote() {
     # usage text
 
     local usage="
-    ${EMW}Usage: ${Y}sote ${G}[options] ${C}[command]
+    ${EMY}Usage: ${W}sote ${G}[options] ${C}[command]
 
     ${EMC}Commands:
 
@@ -71,57 +75,79 @@ sote() {
     # Show help if no args
 
     if [ $# == 0 ] ; then
-        echo -e "$usage"
+        echo -e "$usage${NONE}"
         return;
     fi
 
     # Commands
 
     action=$1
-    arg1=$2
-    arg2=$3
+    name=$2
+    path=$3
 
     case "$action" in
         "-v")
-            echo -e "${Y}sote ${W}v$version"
+            echo -e "${Y}sote ${W}v$version${NONE}"
             return;
             ;;
         "--version")
-            echo -e "${Y}sote ${W}v$version"
+            echo -e "${Y}sote ${W}v$version${NONE}"
             return;
             ;;
         "-h")
-            echo -e "$usage"
+            echo -e "$usage${NONE}"
             return;
             ;;
         "--help")
-            echo -e "$usage"
+            echo -e "$usage${NONE}"
             return;
             ;;
         "list")
-            # TODO : parse & show
-            git config --file $store --list
+            for i in $(git config --file $store --list) ; do
+                i=${i//store./$C}
+                i=${i//=/ ${Y}› ${NONE}}
+
+                echo -e "$i"
+            done
             return;
             ;;
         "show")
-            git config --file $store --get "store.$arg1"
+            path=$( git config --file $store --get "store.$name" )
+            if [ "$path" != "" ]
+            then
+                echo -e "${C}$name ${Y}› ${NONE}$path${NONE}"
+            else
+                echo -e "${EMR}error: ${NONE}no entry for ${C}$name${NONE}"
+            fi
             return;
             ;;
         "add")
-            git config --file $store --replace-all "store.$arg1" $arg2
+            if [ ! $path ]
+            then
+                path=$PWD
+            fi
+            git config --file $store --replace-all "store.$name" $path
+            echo -e "${EMY}added: ${C}$name ${Y}› ${NONE}$path${NONE}"
             return;
             ;;
         "remove")
-            git config --file $store --unset-all "store.$arg1"
+            git config --file $store --unset-all "store.$name"
+            echo -e "${EMY}removed: ${C}$name${NONE}"
             return;
             ;;
         "clear")
             echo "" > $store
+            echo -e "${EMY}cleared${NONE}"
             return;
             ;;
         *)
             path=$( git config --file $store --get "store.$action" )
-            cd $path
+            if [ "$path" != "" ]
+            then
+                cd $path
+            else
+                echo -e "${EMR}error: ${NONE}no entry for ${C}$action${NONE}"
+            fi
             return;
             ;;
     esac
