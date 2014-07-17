@@ -11,7 +11,7 @@ sote() {
 
     # sote vars
 
-    local version=0.0.1
+    local version=0.1.0
     local store="$HOME/.sote-store"
 
     # reset colors
