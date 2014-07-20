@@ -31,6 +31,11 @@ I suggest you the following procedure : it will stores **sote** in your `HOME` d
             -r, --remove <name>          Remove the path stored by sote at the given name.
             -c, --clear                  Clear all the paths stored by sote. Ask for confirmation before acting.
     
+### Example
+
+An explicit image is better than thousands words, so : 
+
+[!sote example](./example.png)
 
 ## Contributing
 
