@@ -35,7 +35,7 @@ I suggest you the following procedure : it will stores **sote** in your `HOME` d
 
 An explicit image is better than thousands words, so : 
 
-[!sote example](./example.png)
+![sote example](./example.png)
 
 ## Contributing
 
