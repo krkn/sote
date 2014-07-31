@@ -7,12 +7,47 @@
 # Licensed under the MIT license. #
 ###################################
 
+SOTE_URL="https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote"
+SOTE_PATH="$HOME/.sote"
+SOTE_SCRIPT="$SOTE_PATH/sote"
+SOTE_STORE="$HOME/.sote/sote-store"
+
+# -----------------------------------------------------------------------------
+
+# Installation procedure
+if [[ ! -d "$SOTE_PATH" || ! -f "$SOTE_SCRIPT" ]]; then
+    mkdir -p $SOTE_PATH
+
+    # Install script itself
+    if [ $(basename $0) != "sote" ]; then
+        echo -en "\tDownloading"
+        curl -sS -o $SOTE_SCRIPT $SOTE_URL
+    else
+        cp $0 $SOTE_SCRIPT
+    fi
+
+    # Add to profile
+    elif [ -f "$HOME/.bashrc" ]; then
+        grep -q $SOTE_SCRIPT $HOME/.bashrc || echo "source $SOTE_PATH/sote" >> "$HOME/.bashrc"
+
+    if [ -f "$HOME/.bash_profile" ]; then
+        grep -q $SOTE_SCRIPT $HOME/.bash_profile || echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile"
+    
+    elif [ -f "$HOME/.profile" ]; then
+        grep -q $SOTE_SCRIPT $HOME/.profile || echo "source $SOTE_PATH/sote" >> "$HOME/.profile"
+    fi
+
+    source $SOTE_SCRIPT
+    exit 0
+fi
+
+# -----------------------------------------------------------------------------
 sote() {
 
     # sote vars
 
     local version=0.1.0
-    local store="$HOME/.sote-store"
+    local store="$SOTE_STORE"
 
     # reset colors
 
