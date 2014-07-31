@@ -153,8 +153,11 @@ sote() {
             return;
             ;;
         "-c"|"--clear")
-            echo "" > $store
-            echo -e "${EMY}cleared${NONE}"
+            read -p "Are you sure you want clear all your SOTE entries [Yn] ? " -n 1 CONFIRM
+            if [[ $CONFIRM =~ ^[Yy]$ ]]; then
+                echo "" > $store
+                echo -e "\n${EMY}cleared${NONE}"
+            fi
             return;
             ;;
         *)
