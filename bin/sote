@@ -27,10 +27,10 @@ if [[ ! -d "$SOTE_PATH" || ! -f "$SOTE_SCRIPT" ]]; then
     fi
 
     # Add to profile
-    elif [ -f "$HOME/.bashrc" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
         grep -q $SOTE_SCRIPT $HOME/.bashrc || echo "source $SOTE_PATH/sote" >> "$HOME/.bashrc"
 
-    if [ -f "$HOME/.bash_profile" ]; then
+    elif [ -f "$HOME/.bash_profile" ]; then
         grep -q $SOTE_SCRIPT $HOME/.bash_profile || echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile"
     
     elif [ -f "$HOME/.profile" ]; then

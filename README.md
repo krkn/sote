@@ -12,19 +12,19 @@
 **Install with `curl`** :
 
 ```bash
-curl -sS https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
+curl -sS https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote | bash
 ```
 
 **Install with `wget`** :
 
 ```bash
-wget -q -O - https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
+wget -q -O - https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote | bash
 ```
 
 **Directly from GIT repo :
 
 ```bash
-git clone https://github.com/leny/sote ~/.sote && echo "source ~/.sote/bin/sote" >> ~/.bash_profile && source ~/.sote/bin/sote
+git clone https://github.com/thierrylag/sote ~/.sote && echo "source ~/.sote/bin/sote" >> ~/.bash_profile && source ~/.sote/bin/sote
 ```
 
 ## Usage
