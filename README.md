@@ -7,21 +7,22 @@
 **sote** is like a perpetual `pushd` : he stores your favorites system paths, so you can jump to it by typing `sote <name>`.
 
 ## Installation
-**sote** embeds his own installation procedure, one of the commands below to install it on your system :
 
-**Install with `curl`** :
+**sote** embeds his own installation procedure.
+
+### Install with `curl`
 
 ```bash
 curl -sS https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
 ```
 
-**Install with `wget`** :
+### Install with `wget`
 
 ```bash
 wget -q -O - https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
 ```
 
-**Directly from GIT repo :
+### Directly from GIT repo
 
 ```bash
 git clone https://github.com/leny/sote ~/.sote && echo "source ~/.sote/bin/sote" >> ~/.bash_profile && source ~/.sote/bin/sote
