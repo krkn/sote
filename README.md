@@ -6,31 +6,47 @@
 
 **sote** is like a perpetual `pushd` : he stores your favorites system paths, so you can jump to it by typing `sote <name>`.
 
-## Getting Started
+## Installation
+**sote** embeds his own installation procedure, one of the commands below to install it on your system :
 
-**sote** is a *bash function*, so you'll need to install it somewhere and tell your bash shell to use it.  
-I suggest you the following procedure : it will stores **sote** in your `HOME` directory, then link it in your `~/.bash_profile`, and finally call sote to be able to use it directly.
+**Install with `curl`** :
 
-    $ git clone https://github.com/leny/sote ~/.sote && echo "source ~/.sote/bin/sote" >> ~/.bash_profile && source ~/.sote/bin/sote
+```bash
+curl -sS https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
+```
+
+**Install with `wget`** :
+
+```bash
+wget -q -O - https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
+```
+
+**Directly from GIT repo :
+
+```bash
+git clone https://github.com/leny/sote ~/.sote && echo "source ~/.sote/bin/sote" >> ~/.bash_profile && source ~/.sote/bin/sote
+```
 
 ## Usage
 
-    sote [options] <name>
+```bash
+sote [options] <name>
 
-        Name:
+    Name:
 
-            *                      Jumps to the path corresponding to the given name.
+        *                      Jumps to the path corresponding to the given name.
 
-        Options:
+    Options:
 
-            -h, --help                   Output usage information
-            -v, --version                Output the version number
-            -l, --list                   Lists the paths stored by sote.
-            -s, --show <name>            Shows the path corresponding to the given name.
-            -a, --add <name> [path]      Add the path to the store with the given name. If no path is given, use current path.
-            -r, --remove <name>          Remove the path stored by sote at the given name.
-            -c, --clear                  Clear all the paths stored by sote. Ask for confirmation before acting.
-    
+        -h, --help                   Output usage information
+        -v, --version                Output the version number
+        -l, --list                   Lists the paths stored by sote.
+        -s, --show <name>            Shows the path corresponding to the given name.
+        -a, --add <name> [path]      Add the path to the store with the given name. If no path is given, use current path.
+        -r, --remove <name>          Remove the path stored by sote at the given name.
+        -c, --clear                  Clear all the paths stored by sote. Ask for confirmation before acting.
+```
+
 ### Example
 
 An explicit image is better than thousands words, so : 
