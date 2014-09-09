@@ -1,4 +1,4 @@
-# sote 
+# sote
 
 > Shell favorites paths, for faster `cd`.
 
@@ -7,26 +7,28 @@
 **sote** is like a perpetual `pushd` : he stores your favorites system paths, so you can jump to it by typing `sote <name>`.
 
 ## Installation
-
-**sote** embeds his own installation procedure.
+**sote** embeds his own installation procedure. You can use one of the commands below to install it on your system :
 
 ### Install with `curl`
 
+
 ```bash
-curl -sS https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
+curl -sS https://raw.githubusercontent.com/krkn/sote/master/bin/sote | bash
 ```
 
 ### Install with `wget`
 
 ```bash
-wget -q -O - https://raw.githubusercontent.com/leny/sote/master/bin/sote | bash
+wget -q -O - https://raw.githubusercontent.com/krkn/sote/master/bin/sote | bash
 ```
 
-### Directly from GIT repo
+### Manually from GIT repo
 
 ```bash
-git clone https://github.com/leny/sote ~/.sote && echo "source ~/.sote/bin/sote" >> ~/.bash_profile && source ~/.sote/bin/sote
+git clone https://github.com/krkn/sote ~/.sote && ~/.sote/bin/sote
 ```
+
+> This one install all the GIT repo (the previous one have juste the Sote script).
 
 ## Usage
 
@@ -50,7 +52,7 @@ sote [options] <name>
 
 ### Example
 
-An explicit image is better than thousands words, so : 
+An explicit image is better than thousands words, so :
 
 ![sote example](./example.png)
 
@@ -60,6 +62,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* **0.1.1**: Add an embeds install procedure (*09/09/14*)
 * **0.1.0**: Rewrite in bash, first release (*17/07/14*)
 * **0.0.1**: Starting project (*19/06/14*)
 
@@ -71,5 +74,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## License
 
-Copyright (c) 2014 leny  
+Copyright (c) 2014 krkn  
 Licensed under the MIT license.
