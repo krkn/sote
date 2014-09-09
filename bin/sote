@@ -33,9 +33,6 @@ fi
 for FILE in $HOME/.profile $HOME/.bash_profile $HOME/.bashrc; do
     if [[ -f $FILE ]]; then
         if [[ $(grep -s "sote" $FILE) ]]; then
-        grep -q $SOTE_SCRIPT $HOME/.bash_profile || echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile"
-
-    elif [ -f "$HOME/.profile" ]; then
             unset FILE; break
         fi
     fi
