@@ -1,13 +1,13 @@
 #!/bin/bash
 ###################################
 # sote                            #
-# https://github.com/leny/sote    #
+# https://github.com/krkn/sote    #
 #                                 #
 # Copyright (c) 2014 krkn         #
 # Licensed under the MIT license. #
 ###################################
 
-SOTE_URL="https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote"
+SOTE_URL="https://raw.githubusercontent.com/krkn/sote/master/bin/sote"
 SOTE_PATH="$HOME/.sote/bin"
 SOTE_SCRIPT="$SOTE_PATH/sote"
 SOTE_STORE="$HOME/.sote-store"

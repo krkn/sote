@@ -28,7 +28,8 @@ wget -q -O - https://raw.githubusercontent.com/krkn/sote/master/bin/sote | bash
 git clone https://github.com/krkn/sote ~/.sote && ~/.sote/bin/sote
 ```
 
-> This one install all the GIT repo (the previous one have juste the Sote script).
+If you want change the "Sote Store" location (~/.sote-store), edit the Sote script and change `SOTE_STORE` variable.
+
 
 ## Usage
 
