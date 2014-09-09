@@ -7,7 +7,7 @@
 **sote** is like a perpetual `pushd` : he stores your favorites system paths, so you can jump to it by typing `sote <name>`.
 
 ## Installation
-**sote** embeds his own installation procedure, one of the commands below to install it on your system :
+**sote** embeds his own installation procedure. You can use one of the commands below to install it on your system :
 
 **Install with `curl`** :
 
@@ -26,6 +26,8 @@ wget -q -O - https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote |
 ```bash
 git clone https://github.com/thierrylag/sote ~/.sote && ~/.sote/bin/sote
 ```
+
+> This one install all the GIT repo (the previous one have juste the Sote script).
 
 ## Usage
 
@@ -59,6 +61,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* **0.1.1**: Add an embeds install procedure (*09/09/14*)
 * **0.1.0**: Rewrite in bash, first release (*17/07/14*)
 * **0.0.1**: Starting project (*19/06/14*)
 
@@ -70,5 +73,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## License
 
-Copyright (c) 2014 leny  
+Copyright (c) 2014 krkn  
 Licensed under the MIT license.

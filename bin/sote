@@ -3,7 +3,7 @@
 # sote                            #
 # https://github.com/leny/sote    #
 #                                 #
-# Copyright (c) 2014 leny         #
+# Copyright (c) 2014 krkn         #
 # Licensed under the MIT license. #
 ###################################
 
@@ -48,7 +48,7 @@ sote() {
 
     # sote vars
 
-    local version=0.1.0
+    local version=0.1.1
     local store="$SOTE_STORE"
 
     # reset colors
