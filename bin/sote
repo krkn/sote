@@ -33,17 +33,25 @@ if [[ $(declare -f sote > /dev/null) ]]; then
 
     # Add to profile
     if [[ $(grep -wq sote $HOME/.bashrc $HOME/.bash_profile $HOME/.profile) ]]; then
-        if [ -f "$HOME/.bashrc" ]; then
+        if [[ -f "$HOME/.bashrc" ]]; then
+            echo -en "\tAdd Sote to your .bashrc"
+
             echo "source $SOTE_SCRIPT" >> "$HOME/.bashrc" &&
             source $HOME/.bashrc
 
-        elif [ -f "$HOME/.bash_profile" ]; then
+        elif [[ -f "$HOME/.bash_profile" ]]; then
+            echo -en "\tAdd Sote to your .bash_profile"
+
             echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile" &&
             source $HOME/.bash_profile
 
-        elif [ -f "$HOME/.profile" ]; then
+        elif [[ -f "$HOME/.profile" ]]; then
+            echo -en "\tAdd Sote to your .profile"
+
             echo "source $SOTE_SCRIPT" >> "$HOME/.profile" &&
             source $HOME/.profile
+        else
+            echo "No profile"
         fi
     fi
     exit 0
