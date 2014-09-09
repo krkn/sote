@@ -21,10 +21,10 @@ if [[ ! -f "$SOTE_SCRIPT" ]]; then
     fi
 
     if [[ $(basename $0) != "sote" ]]; then
-        echo -en "\tDownloading"
+        echo -e "\tDownloading"
         curl -sS -o $SOTE_SCRIPT $SOTE_URL
     else
-        echo -en "\tLocal installation"
+        echo -e "\tLocal install"
         cp $0 $SOTE_SCRIPT
     fi
 fi
@@ -32,17 +32,14 @@ fi
 # Add to profile
 for FILE in $HOME/.profile $HOME/.bash_profile $HOME/.bashrc; do
     if [[ -f $FILE ]]; then
-        if [[ $(grep -s "sote" $FILE) ]]; then
-        grep -q $SOTE_SCRIPT $HOME/.bash_profile || echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile"
-
-    elif [ -f "$HOME/.profile" ]; then
+        if [[ $(grep -s "$SOTE_PATH" $FILE) ]]; then
             unset FILE; break
         fi
     fi
 done
 
 if [[ -f $FILE ]]; then
-    echo -en "\tAdd Sote to your $FILE"
+    echo -e "\tAdd Sote to your $FILE"
     echo "source $SOTE_SCRIPT" >> $FILE
 fi
 
