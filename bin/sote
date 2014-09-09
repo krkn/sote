@@ -8,36 +8,44 @@
 ###################################
 
 SOTE_URL="https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote"
-SOTE_PATH="$HOME/.sote"
+SOTE_PATH="$HOME/.sote/bin"
 SOTE_SCRIPT="$SOTE_PATH/sote"
 SOTE_STORE="$HOME/.sote/sote-store"
 
 # -----------------------------------------------------------------------------
 
 # Installation procedure
-if [[ ! -d "$SOTE_PATH" || ! -f "$SOTE_SCRIPT" ]]; then
-    mkdir -p $SOTE_PATH
+if [[ $(declare -f sote > /dev/null) ]]; then
 
-    # Install script itself
-    if [ $(basename $0) != "sote" ]; then
-        echo -en "\tDownloading"
-        curl -sS -o $SOTE_SCRIPT $SOTE_URL
-    else
-        cp $0 $SOTE_SCRIPT
+    if [[ ! -f "$SOTE_SCRIPT" ]]; then
+        if [[ ! -d "$SOTE_PATH" ]]; then
+            mkdir -p $SOTE_PATH
+        fi
+
+        if [[ $(basename $0) != "sote" ]]; then
+            echo -en "\tDownloading"
+            curl -sS -o $SOTE_SCRIPT $SOTE_URL
+        else
+            echo -en "\tLocal installation"
+            cp $0 $SOTE_SCRIPT
+        fi
     fi
 
     # Add to profile
-    if [ -f "$HOME/.bashrc" ]; then
-        grep -q $SOTE_SCRIPT $HOME/.bashrc || echo "source $SOTE_PATH/sote" >> "$HOME/.bashrc"
+    if [[ $(grep -wq sote $HOME/.bashrc $HOME/.bash_profile $HOME/.profile) ]]; then
+        if [ -f "$HOME/.bashrc" ]; then
+            echo "source $SOTE_SCRIPT" >> "$HOME/.bashrc" &&
+            source $HOME/.bashrc
 
-    elif [ -f "$HOME/.bash_profile" ]; then
-        grep -q $SOTE_SCRIPT $HOME/.bash_profile || echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile"
-    
-    elif [ -f "$HOME/.profile" ]; then
-        grep -q $SOTE_SCRIPT $HOME/.profile || echo "source $SOTE_PATH/sote" >> "$HOME/.profile"
+        elif [ -f "$HOME/.bash_profile" ]; then
+            echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile" &&
+            source $HOME/.bash_profile
+
+        elif [ -f "$HOME/.profile" ]; then
+            echo "source $SOTE_SCRIPT" >> "$HOME/.profile" &&
+            source $HOME/.profile
+        fi
     fi
-
-    source $SOTE_SCRIPT
     exit 0
 fi
 
@@ -210,7 +218,7 @@ sote() {
 
 _sote_complete() {
     local word="${COMP_WORDS[COMP_CWORD]}"
-    
+
     if [ "$COMP_CWORD" -eq 1 ]
     then
         if [ "${word:0:1}" == "-" ]

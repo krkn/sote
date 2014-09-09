@@ -1,4 +1,4 @@
-# sote 
+# sote
 
 > Shell favorites paths, for faster `cd`.
 
@@ -21,10 +21,10 @@ curl -sS https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote | bas
 wget -q -O - https://raw.githubusercontent.com/thierrylag/sote/master/bin/sote | bash
 ```
 
-**Directly from GIT repo :
+**Manually from GIT repo** :
 
 ```bash
-git clone https://github.com/thierrylag/sote ~/.sote && echo "source ~/.sote/bin/sote" >> ~/.bash_profile && source ~/.sote/bin/sote
+git clone https://github.com/thierrylag/sote ~/.sote && ~/.sote/bin/sote
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ sote [options] <name>
 
 ### Example
 
-An explicit image is better than thousands words, so : 
+An explicit image is better than thousands words, so :
 
 ![sote example](./example.png)
 
