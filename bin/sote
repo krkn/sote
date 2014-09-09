@@ -39,8 +39,8 @@ for FILE in $HOME/.profile $HOME/.bash_profile $HOME/.bashrc; do
 done
 
 if [[ -f $FILE ]]; then
-    echo -en "\tAdd Sote to your $PROFILE"
-    echo "source $SOTE_SCRIPT" >> $PROFILE
+    echo -en "\tAdd Sote to your $FILE"
+    echo "source $SOTE_SCRIPT" >> $FILE
 fi
 
 # -----------------------------------------------------------------------------
