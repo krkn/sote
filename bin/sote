@@ -15,46 +15,32 @@ SOTE_STORE="$HOME/.sote/sote-store"
 # -----------------------------------------------------------------------------
 
 # Installation procedure
-if [[ $(declare -f sote > /dev/null) ]]; then
-
-    if [[ ! -f "$SOTE_SCRIPT" ]]; then
-        if [[ ! -d "$SOTE_PATH" ]]; then
-            mkdir -p $SOTE_PATH
-        fi
-
-        if [[ $(basename $0) != "sote" ]]; then
-            echo -en "\tDownloading"
-            curl -sS -o $SOTE_SCRIPT $SOTE_URL
-        else
-            echo -en "\tLocal installation"
-            cp $0 $SOTE_SCRIPT
-        fi
+if [[ ! -f "$SOTE_SCRIPT" ]]; then
+    if [[ ! -d "$SOTE_PATH" ]]; then
+        mkdir -p $SOTE_PATH
     fi
 
-    # Add to profile
-    if [[ $(grep -wq sote $HOME/.bashrc $HOME/.bash_profile $HOME/.profile) ]]; then
-        if [[ -f "$HOME/.bashrc" ]]; then
-            echo -en "\tAdd Sote to your .bashrc"
+    if [[ $(basename $0) != "sote" ]]; then
+        echo -en "\tDownloading"
+        curl -sS -o $SOTE_SCRIPT $SOTE_URL
+    else
+        echo -en "\tLocal installation"
+        cp $0 $SOTE_SCRIPT
+    fi
+fi
 
-            echo "source $SOTE_SCRIPT" >> "$HOME/.bashrc" &&
-            source $HOME/.bashrc
-
-        elif [[ -f "$HOME/.bash_profile" ]]; then
-            echo -en "\tAdd Sote to your .bash_profile"
-
-            echo "source $SOTE_SCRIPT" >> "$HOME/.bash_profile" &&
-            source $HOME/.bash_profile
-
-        elif [[ -f "$HOME/.profile" ]]; then
-            echo -en "\tAdd Sote to your .profile"
-
-            echo "source $SOTE_SCRIPT" >> "$HOME/.profile" &&
-            source $HOME/.profile
-        else
-            echo "No profile"
+# Add to profile
+for FILE in $HOME/.profile $HOME/.bash_profile $HOME/.bashrc; do
+    if [[ -f $FILE ]]; then
+        if [[ $(grep -s "sote" $FILE) ]]; then
+            unset FILE; break
         fi
     fi
-    exit 0
+done
+
+if [[ -f $FILE ]]; then
+    echo -en "\tAdd Sote to your $PROFILE"
+    echo "source $SOTE_SCRIPT" >> $PROFILE
 fi
 
 # -----------------------------------------------------------------------------
