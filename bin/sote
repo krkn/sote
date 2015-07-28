@@ -211,7 +211,7 @@ sote() {
 }
 
 _sote_complete() {
-    $( echo ${COMP_WORDS[COMP_CWORD]} | tr "[:upper:]" "[:lower:]")
+    local word=$( echo ${COMP_WORDS[COMP_CWORD]} | tr "[:upper:]" "[:lower:]")
 
     if [ "$COMP_CWORD" -eq 1 ]
     then
