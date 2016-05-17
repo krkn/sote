@@ -178,9 +178,9 @@ sote() {
             then
                 path=$PWD
             else
-                path=$(cd $path; pwd)
+                path=$(cd "${path}"; pwd)
             fi
-            git config --file $store --replace-all "store.$name" $path
+            git config --file $store --replace-all "store.$name" "$path"
             echo -e "${EMY}added: ${C}$name ${Y}› ${NONE}$path${NONE}"
             return;
             ;;
@@ -201,7 +201,7 @@ sote() {
             path=$( git config --file $store --get "store.$action" )
             if [ "$path" != "" ]
             then
-                cd $path
+                cd "$path"
             else
                 echo -e "${EMR}error: ${NONE}no entry for ${C}$action${NONE}"
             fi
