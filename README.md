@@ -9,6 +9,8 @@
 ## Installation
 **sote** embeds his own installation procedure. You can use one of the commands below to install it on your system :
 
+> **WARNING:** sote is currently not compatible with zsh. A fixed version will come soon.
+
 ### Install with `curl`
 
 
