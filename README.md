@@ -65,6 +65,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* **0.2.0**: Refactoring list display and add test on directory existence.
+
 * **0.1.4**: Remove style from `show` command to use in `$()`.
 * **0.1.3**: Bugfix embeds install procedure, transert ownership to [krkn](https://github.com/krkn) (*09/09/14*)
 * **0.1.2**: Add an embeds install procedure (*31/07/14*)
