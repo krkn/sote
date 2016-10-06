@@ -156,10 +156,12 @@ sote() {
             ;;
         "-l"|"--list")
             for i in $(git config --file $store --list) ; do
-                i=${i//store./$C}
-                i=${i//=/ ${Y}› ${NONE}}
+                i=${i//store./}
+                i=${i//=/ ${Y}›${NONE} }
 
-                echo -e "$i"
+                [ -d $(echo $i | awk '{print $3}') ] \
+                    && echo -e "$C$i" \
+                    || echo -e "${R}${i} ${R}[NOT FOUND]${NONE}"
             done
             return;
             ;;
