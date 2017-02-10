@@ -155,14 +155,18 @@ sote() {
             return;
             ;;
         "-l"|"--list")
+            savedIFS=$IFS
+            IFS=$'\n'
             for i in $(git config --file $store --list) ; do
                 i=${i//store./}
+                d=$(echo $i | cut -d "=" -f 2)
                 i=${i//=/ ${Y}›${NONE} }
 
-                [ -d $(echo $i | awk '{print $3}') ] \
+                [ -d "$d" ] \
                     && echo -e "$C$i" \
                     || echo -e "${R}${i} ${R}[NOT FOUND]${NONE}"
             done
+            IFS=$savedIFS
             return;
             ;;
         "-s"|"--show")
